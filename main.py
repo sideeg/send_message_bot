@@ -39,6 +39,8 @@ async def get_message(update: Update, context: CallbackContext) -> None:
         await update.message.reply_text(f'Error: {e}')
 
     return ConversationHandler.END
+async def handle_text_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_text('انا م بقدر افيدك بحاجة اكتر لو عندك اي استفسار ارجع لي احمد افرو في الواتس +971 56 724 9627 او لي محمد التاج في التلقرام https://t.me/Altaj889')
 
 
 async def cancel(update: Update, context: CallbackContext) -> None:
@@ -59,14 +61,17 @@ def main() -> None:
         states={
             USER_ID: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_user_id)],
             MESSAGE: [MessageHandler(filters.TEXT & ~filters.COMMAND, get_message)],
+
         },
         fallbacks=[CommandHandler('cancel', cancel)]
     )
 
     application.add_handler(conv_handler)
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text_message))
     # Add handlers for commands
     application.add_handler(CommandHandler('start', start))
     application.add_handler(CommandHandler('cancel', cancel))
+
     # Start the Bot
     application.run_polling()
 
