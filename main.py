@@ -11,7 +11,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Replace 'YOUR_TOKEN' with your actual bot token
-TOKEN = '7327423547:AAF4mJGQ7pJk9Il_DYfqiUcSBnQkIoOKR2Q'
+TOKEN = ''
 
 # States for the conversation handler
 USER_ID, MESSAGE = range(2)
